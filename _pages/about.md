@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Thanks for visiting my websitw! I am a PhD student in Political Science at Freie Universisät Berlin. I also work as a Predoctoral researcher at a research project on [Digital governance in China](https://www.digitalgovernancechina.eu/) funded by European Research Council at the same university.
+Thanks for visiting my website! I am a PhD student in Political Science at Freie Universisät Berlin. I also work as a Predoctoral researcher at a research project on [Digital governance in China](https://www.digitalgovernancechina.eu/) funded by European Research Council at the same university.
 
 Danqi's personal website
 ======
