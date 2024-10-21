@@ -11,54 +11,46 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D in Political Science, Freie Universität Berlin, present 
+* M.A. in National and International Administration and Policy , University of Potsdam, 2021
+* B.A. in Political Science, Freie Universität Berlin, 2019
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* December 2021 - present: Predoctoral researcher
+  * ERC project "Digital governance in China"
+  * Duties includes: designing large-scale survey experiment, conducting fieldwork, data analysis 
+  * Principal Investigator: Prof. Dr. Genia Kostka
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* May 2019 - November 2021: Student Research Assistant
+  * Freie Universität Berlin
+  * Duties included: assisting multiple research projects on cross-country surveys of public opinions on digital technologies
+  * Supervisor: Prof. Dr. Genia Kostka
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* July - November 2018: Young Professional
+  * Deutsche Gesellschaft für Internationale Zusammenarbeit
+  * Duties included: assisting project *Sino-German Cooperation in Industry 4.0*
+  * Supervisor: Tianning Li, Simon Hochstein, Benfang Wang 
   
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Programming language
+  * Python
+  * R
+* Statistical tools
+  * Stata
+  * SPSS
+* Markup language
+  * LaTex
+  * HTML
+  * Markdown
+* Natural language
+  * Mandarin (native speaker)
+  * English (professional)
+  * German (professional)
+  * French (intermediate)
+  * Russian (beginner)
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
 Service and leadership
 ======
 * Currently signed in to 43 different slack teams
