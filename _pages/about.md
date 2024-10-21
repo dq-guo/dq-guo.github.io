@@ -1,6 +1,3 @@
-
-
-
 ---
 permalink: /
 title: "👋 Hi there! I am Danqi!"
