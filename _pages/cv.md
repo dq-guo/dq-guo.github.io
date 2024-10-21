@@ -6,7 +6,7 @@ author_profile: true
 redirect_from:
   - /resume
 ---
-
+updated October 2024.
 {% include base_path %}
 
 Education
