@@ -1,14 +1,13 @@
 ---
-title: "Paper Title Number 3"
+title: "Emotions, crisis, and institutions: Explaining compliance with COVID-19 regulations"
 collection: publications
 category: manuscripts
-permalink: /publication/2015-10-01-paper-title-number-3
-excerpt: 'This paper is about the number 3. The number 4 is left for future work.'
-date: 2015-10-01
-venue: 'Journal 1'
-slidesurl: 'http://academicpages.github.io/files/slides3.pdf'
-paperurl: 'http://academicpages.github.io/files/paper3.pdf'
-citation: 'Your Name, You. (2015). &quot;Paper Title Number 3.&quot; <i>Journal 1</i>. 1(3).'
+permalink: /publication/Guo-et-al_2023_EmotionsCrisisInstitution
+excerpt: 'Amid the COVID-19 pandemic, citizens’ compliance with government preventive measures was one of the top policy priori- ties for governments worldwide. This study engages with socio-legal and psychological theories on compliance and proposes an analytical framework to explore the role of different psychological factors on individual-level compliance during global health crises. Using the results of three national surveys, we argue that various negative emotional states, perceptions of the ongoing crisis, and of the institutional settings are major factors influencing individual compliance across countries. Most importantly, while increased panic, anxiety, and sadness lead to higher compliance, rising anger, loneliness, and impatience decrease compliance levels. Notably, perceptions of the COVID-19 crisis—especially health concerns and a worsening financial situation—tend to elicit anger among citizens across countries, thereby further hampering their obedience with pandemic reg- ulations. Furthermore, perceptions of public institutions also influence individual compliance. Overall, in order to ensure com- pliance, we suggest that policymakers and those implementing government measures take individual psychological factors into account both within and beyond the public crisis context.'
+date: 2023-01-13
+venue: 'Regulation & Governance'
+paperurl: 'https://onlinelibrary.wiley.com/doi/epdf/10.1111/rego.12509'
+citation: 'Guo, D., Habich-Sobiegalla, S. and Kostka, G.. (2024). &quot;Emotions, crisis, and institutions: Explaining compliance with COVID-19 regulations.&quot; <i>Regulation & Governance</i>. 18: 177-202'
 ---
 
-The contents above will be part of a list of publications, if the user clicks the link for the publication than the contents of section will be rendered as a full page, allowing you to provide more information about the paper for the reader. When publications are displayed as a single page, the contents of the above "citation" field will automatically be included below this section in a smaller font.
+Amid the COVID-19 pandemic, citizens’ compliance with government preventive measures was one of the top policy priori- ties for governments worldwide. This study engages with socio-legal and psychological theories on compliance and proposes an analytical framework to explore the role of different psychological factors on individual-level compliance during global health crises. Using the results of three national surveys, we argue that various negative emotional states, perceptions of the ongoing crisis, and of the institutional settings are major factors influencing individual compliance across countries. Most importantly, while increased panic, anxiety, and sadness lead to higher compliance, rising anger, loneliness, and impatience decrease compliance levels. Notably, perceptions of the COVID-19 crisis—especially health concerns and a worsening financial situation—tend to elicit anger among citizens across countries, thereby further hampering their obedience with pandemic reg- ulations. Furthermore, perceptions of public institutions also influence individual compliance. Overall, in order to ensure com- pliance, we suggest that policymakers and those implementing government measures take individual psychological factors into account both within and beyond the public crisis context.
