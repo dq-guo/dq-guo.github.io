@@ -12,7 +12,7 @@ redirect_from:
 Education
 ======
 * Ph.D in Political Science, Freie Universität Berlin, present 
-* M.A. in National and International Administration and Policy , University of Potsdam, 2021
+* M.A. in National and International Administration and Policy, University of Potsdam, 2021
 * B.A. in Political Science, Freie Universität Berlin, 2019
 
 Work experience
@@ -34,23 +34,7 @@ Work experience
   
 Skills
 ======
-* Programming language
-  * Python
-  * R
-* Statistical tools
-  * Stata
-  * SPSS
-* Markup language
-  * LaTex
-  * HTML
-  * Markdown
-* Natural language
-  * Mandarin (native speaker)
-  * English (professional)
-  * German (professional)
-  * French (intermediate)
-  * Russian (beginner)
-
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Programming language: R, Python
+* Statistical tools: Stata, SPSS
+* Markup language: Latex, Markdown, HTML
+* Natural language: 中文 (native speaker), English (professional), Deutsch (professional), français (intermediate), Ру́сский (beginner)
