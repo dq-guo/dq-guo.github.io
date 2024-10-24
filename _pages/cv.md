@@ -11,7 +11,7 @@ Last update: October 2024
 
 Education
 ======
-* Ph.D in Political Science, Freie Universität Berlin, present 
+* Ph.D in Political Science, Freie Universität Berlin, present (supervised by Genia Kostka and Alexander Libmann) 
 * M.A. in National and International Administration and Policy, University of Potsdam, 2021
 * B.A. in Political Science, Freie Universität Berlin, 2019
 
@@ -36,5 +36,5 @@ Skills
 ======
 * Programming language: R, Python
 * Statistical tools: Stata, SPSS
-* Markup language: Latex, Markdown, HTML
-* Natural language: 中文 (native speaker), English (professional), Deutsch (professional), français (intermediate), Ру́сский (beginner)
+* Markup language: LaTex, Markdown, HTML
+* Natural language: 中文 (native speaker), English (professional), Deutsch (professional), Français (intermediate), Ру́сский (beginner)
