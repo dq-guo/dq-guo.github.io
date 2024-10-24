@@ -1,7 +1,7 @@
 ---
 title: "Chinesische Politik im Wandel der Moderne (Chinese Politics in the Course of Modernity) "
 collection: teaching
-type: "High school (last year)"
+type: "High school (11.-13.grade)"
 permalink: /teaching/2014-spring-teaching-1
 venue: "Deutsche SchülerAkademie"
 date: 2023-08-13
