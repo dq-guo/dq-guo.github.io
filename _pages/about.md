@@ -11,7 +11,7 @@ Thanks for visiting my website! I am a last-year PhD candidate in Political Scie
 
 I have a deep passion for *interdisciplinary* approaches to studying complex questions with profound societal and political implications in the digital era, both at domestic and international level. My research interests centre on various aspects of the interplay between politics and digitalization, including the macro-level transformation of political structure and institution in modern autocracies and democracies, and the micro-level interaction between the psychological dimension (esp. affect and emotion) and digital-enabled political control (aka. digital control). My dissertation project examines the origins, mechanisms, and consequences of digital authoritariansim through the lens of human emotion. I use a rich methodological toolkit in my daily research, including computational multimodal analysis of text, image and video, survey experiment, and ethnographic fieldwork (e.g. interviews, documentation, participant observation).
 
-Outside of research you can most likely find me at the gym 🏋🏻‍♀️, jogging🏃🏻‍♀️‍➡️, learning French and Russian, traveling 🥾, or experimenting with a new receipt 👩🏻‍🍳.
+Outside of research you can most likely find me at the gym 🏋🏻‍♀️, jogging🏃🏻‍♀️‍➡️, learning French and Russian, traveling 🥾, or experimenting with a new recipe 👩🏻‍🍳.
 
 ------
 Please take a look at the links above to learn more about me and my work! If you are interested in my research or have any question, critique, advice, or comment, don't hesitate to write me. 
