@@ -1,20 +1,11 @@
 ---
-title: "Teaching experience 2"
+title: "Theories and Discourses in Chinese Social Science Studies (Theorien und Diskurse der sozialwissenschaftlichen Chinastudien)"
 collection: teaching
-type: "Workshop"
+type: "Seminar (Master)"
 permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
-date: 2015-01-01
-location: "City, Country"
+venue: "Freie University Berlin, Institute for Chineses Studies"
+date: 2024-11-25
+location: "Berlin, Germany"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
-
-Heading 1
-======
-
-Heading 2
-======
-
-Heading 3
-======
+I will be teaching one session on International Relations Theories with a focus on China's role. 
