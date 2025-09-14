@@ -21,7 +21,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "danqi.png"
+  avatar           : "bio-photo-2.png"
   name             : "Danqi Guo"
   pronouns         : # example: "she/her"  
   bio              : "PhD student in Political Science"
