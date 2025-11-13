@@ -8,4 +8,4 @@ date: 2024-11-25
 location: "Berlin, Germany"
 ---
 
-I will be teaching one session on International Relations Theories with a focus on China's role. 
+Introduction to International Relations Theories with a focus on China's role. 
