@@ -1,6 +1,11 @@
 ---
 ---
 
+@import "minimal-mistakes/skins/default";
+@import "minimal-mistakes";
+body {
+  font-size: 0.9rem;   // ~14.4px
+}
 /*
  *    Minimal Mistakes Jekyll Theme
  *
