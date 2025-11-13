@@ -1,8 +1,8 @@
 ---
-title: "Chinesische Politik im Wandel der Moderne (Chinese Politics in the Course of Modernity) "
+title: "Chinesische Politik im Wandel der Moderne (Chinese Politics in the Course of Modernity, in German) "
 collection: teaching
-type: "High school (11.-13.grade)"
-permalink: /teaching/2014-spring-teaching-1
+type: "High school (11th-13th grade)"
+permalink: /teaching/2023_DSA_ChinesischPolitik
 venue: "Deutsche SchülerAkademie"
 date: 2023-08-13
 location: "Höchst im Oldenwald, Hessen, Germany"
