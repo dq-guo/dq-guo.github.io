@@ -1,10 +1,8 @@
 ---
-permalink: /
-title: "Welcome to my website!"
+permalink: /about-legacy/
+title: "About (Legacy)"
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+published: false
 ---
 
 I am a PhD candidate (near completion and on job market) in Political Science at Freie Universisät Berlin. I also work as a Predoctoral researcher at a research project on [Digital governance in China](https://www.digitalgovernancechina.eu/) funded by the European Research Council (ERC). My research interests lie in the intersection of **politics** (particularly authoritarian politics), **psychology** (particularly affect and emotion), and **technology** (particularly AI and other general purpose technologies). Specifically, I am interested in researching macro-level transformation of political structure and institution in modern autocracies and democracies, and micro-level interaction between the psychological dimension and digital-enabled political control (aka. digital control). 

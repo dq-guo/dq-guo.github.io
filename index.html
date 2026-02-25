@@ -1,0 +1,812 @@
+---
+layout: none
+permalink: /
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danqi Guo</title>
+  <meta name="description" content="Danqi Guo – PhD Candidate in Political Science at Freie Universität Berlin, researching digital authoritarianism, emotion, and AI governance.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230f2044'/><text x='16' y='22' font-family='Inter,Arial,sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle' letter-spacing='0.5'>DG</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f2044;
+      --blue:   #1e4080;
+      --accent: #2563eb;
+      --text:   #2d3748;
+      --muted:  #718096;
+      --light:  #f7f8fc;
+      --border: #e2e8f0;
+      --white:  #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--navy);
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.25);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      gap: 1rem;
+    }
+
+    .nav-name {
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 3px;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0.28rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-btn:hover { color: rgba(255,255,255,0.9); }
+
+    .lang-btn.active {
+      background: white;
+      color: var(--navy);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* ── Hero / About ── */
+    .hero {
+      background: var(--light);
+      padding: 5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hero-photo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 4px solid white;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.14);
+    }
+
+    .side-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .side-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: white;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .side-link:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .side-link svg { flex-shrink: 0; }
+
+    .hero-content { padding-top: 0.25rem; }
+
+    .hero-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-title {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-affil {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-affil a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-affil a:hover { text-decoration: underline; }
+
+    .hero-bio {
+      font-size: 0.925rem;
+      color: var(--text);
+      max-width: 700px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-bio strong { color: var(--navy); font-weight: 600; }
+    .hero-bio em { font-style: italic; }
+    .hero-bio a { color: var(--accent); text-decoration: none; }
+    .hero-bio a:hover { text-decoration: underline; }
+
+    .hero-note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-note em { font-style: italic; }
+
+    /* ── Sections ── */
+    section { padding: 4.5rem 2rem; }
+    section:nth-of-type(even) { background: var(--light); }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 2rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 2px solid var(--navy);
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+
+    /* ── Publications ── */
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .pub-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 1.4rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .pub-card:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      transform: translateX(2px);
+    }
+
+    .pub-card.working { border-left-color: #48bb78; }
+
+    .pub-title {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .pub-title a { color: inherit; text-decoration: none; }
+    .pub-title a:hover { color: var(--accent); }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-venue {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .pub-tag {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-pub   { background: #ebf8ff; color: #2b6cb0; }
+    .tag-forth { background: #fefcbf; color: #7b6010; }
+    .tag-rr    { background: #f0fff4; color: #276749; }
+
+    /* ── Teaching ── */
+    .teaching-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .teaching-item {
+      padding: 1.25rem 1.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .teaching-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+    .teaching-title {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.93rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .teaching-venue {
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .teaching-badge {
+      flex-shrink: 0;
+      padding: 0.25rem 0.7rem;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── CV ── */
+    .cv-block {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-text {
+      font-size: 0.93rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--navy);
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    footer a:hover { color: white; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .hero-photo-wrap { flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap; }
+      .side-links { flex-direction: row; flex-wrap: wrap; justify-content: center; width: auto; }
+      .side-link { font-size: 0.75rem; padding: 0.4rem 0.65rem; }
+
+      .hero-name { font-size: 2.1rem; }
+      .hero-bio { text-align: left; }
+      .hero-note { text-align: left; }
+
+      .teaching-item { flex-direction: column; }
+      .teaching-badge { align-self: flex-start; }
+
+      .cv-block { flex-direction: column; gap: 1rem; }
+
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--navy); padding: 1rem 2rem 1.5rem; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Danqi Guo</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about"    data-i18n="nav-about">About</a></li>
+      <li><a href="#research" data-i18n="nav-research">Research</a></li>
+      <li><a href="#teaching" data-i18n="nav-teaching">Teaching</a></li>
+      <li><a href="#cv"       data-i18n="nav-cv">CV</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="lang-en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn"        id="lang-de" onclick="setLanguage('de')">DE</button>
+      <button class="lang-btn"        id="lang-zh" onclick="setLanguage('zh')">中文</button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── About ── -->
+<section class="hero" id="about">
+  <div class="hero-inner">
+
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="images/profile-foto.png" alt="Danqi Guo"
+           onerror="this.src='images/bio-photo.jpg'">
+      <div class="side-links">
+        <a class="side-link" href="mailto:d.guo@fu-berlin.de">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Email
+        </a>
+        <a class="side-link" href="https://github.com/dq-guo" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.087.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.375.202 2.392.1 2.645.64.698 1.028 1.591 1.028 2.682 0 3.842-2.338 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .267.18.578.688.48C19.138 20.163 22 16.417 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+        <a class="side-link" href="https://www.linkedin.com/in/danqiguo" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="side-link" href="https://orcid.org/0000-0002-1504-8029" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 5.5a1 1 0 110 2 1 1 0 010-2zm-.5 3.5h2v7H10v-7z"/></svg>
+          ORCID
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-name">Danqi Guo</h1>
+      <p class="hero-title" data-i18n="hero-title">PhD Candidate in Political Science</p>
+      <p class="hero-affil">
+        <a href="https://www.fu-berlin.de" target="_blank">Freie Universität Berlin</a>
+        &nbsp;·&nbsp; <span data-i18n="hero-location">Berlin, Germany</span>
+      </p>
+
+      <p class="hero-bio" data-i18n="hero-bio-1">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin,
+        and a Predoctoral Researcher at the ERC-funded project on
+        <a href="https://www.digitalgovernancechina.eu/" target="_blank">Digital Governance in China</a>.</p>
+
+      <p class="hero-bio" data-i18n="hero-bio-2">My research sits at the intersection of <strong>authoritarian politics</strong>,
+        <strong>political psychology</strong> (particularly affect and emotion), and
+        <strong>technology</strong> (particularly AI and other disruptive technologies). I study the macro-level
+        transformation of political institutions in modern autocracies, and the micro-level interplay
+        between emotion and digital political control. My dissertation investigates digital
+        authoritarianism through the understudied lens of emotion, using China as a central empirical case.</p>
+
+      <p class="hero-bio" data-i18n="hero-bio-3">Methodologically, I draw on quantitative and experimental approaches — large-scale surveys,
+        experiments, computational multimodal techniques — as well as qualitative methods including
+        fieldwork, participant observation, and interviews.</p>
+
+      <p class="hero-note" data-i18n="hero-note">My work has been published in <em>Perspectives on Politics</em>,
+        <em>Regulation &amp; Governance</em>, and the <em>Journal of Environmental Policy &amp; Planning</em>.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Research ── -->
+<section id="research">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="section-research">Research</h2>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div class="pub-title">
+          <a href="https://www.cambridge.org/core/journals/perspectives-on-politics/article/knowing-is-disturbing-emotions-and-public-attitudes-toward-digital-control-under-autocracy/42AEE2A628849EC66A948C140CBB93F6"
+             target="_blank" rel="noopener">
+            Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy
+          </a>
+        </div>
+        <div class="pub-authors">Guo, D. &amp; Kostka, G.</div>
+        <div class="pub-meta">
+          <span class="pub-venue"><em>Perspectives on Politics</em></span>
+          <span class="pub-tag tag-forth" data-i18n="tag-forth">Forthcoming</span>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-title">
+          <a href="https://www.tandfonline.com/doi/full/10.1080/1523908X.2024.2423804"
+             target="_blank" rel="noopener">
+            In or outside the box? Citizen action between institutional and extra-institutional channels
+            in Chinese environmental governance
+          </a>
+        </div>
+        <div class="pub-authors">Guo, D., Bondes, M., Kostka, G. &amp; Rabe, A. W.</div>
+        <div class="pub-meta">
+          <span class="pub-venue"><em>Journal of Environmental Policy and Planning</em></span>
+          <span class="pub-tag tag-pub">2025</span>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-title">
+          <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/rego.12509"
+             target="_blank" rel="noopener">
+            Emotions, crisis, and institutions: Explaining compliance with COVID-19 regulations
+          </a>
+        </div>
+        <div class="pub-authors">Guo, D., Habich-Sobiegalla, S. &amp; Kostka, G.</div>
+        <div class="pub-meta">
+          <span class="pub-venue"><em>Regulation &amp; Governance</em>, 18: 177–202</span>
+          <span class="pub-tag tag-pub">2024</span>
+        </div>
+      </div>
+
+      <div class="pub-card working">
+        <div class="pub-title">
+          Security and Beyond: Unpacking State Narratives and Emotional Undertones
+          for Digital Surveillance in China
+        </div>
+        <div class="pub-authors">Yan, Y., Guo, D. &amp; Kostka, G.</div>
+        <div class="pub-meta">
+          <span class="pub-venue"><em data-i18n="tag-wp">Working Paper</em></span>
+          <span class="pub-tag tag-rr">R&amp;R</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Teaching ── -->
+<section id="teaching">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="section-teaching">Teaching</h2>
+    <div class="teaching-list">
+
+      <div class="teaching-item">
+        <div>
+          <div class="teaching-title">AI Governance in China</div>
+          <div class="teaching-venue">Institute for Chinese Studies, Freie Universität Berlin · <span data-i18n="term-winter">Winter</span> 2025</div>
+        </div>
+        <span class="teaching-badge" data-i18n="badge-ma">MA Seminar</span>
+      </div>
+
+      <div class="teaching-item">
+        <div>
+          <div class="teaching-title">Theories and Discourses in Chinese Social Science Studies
+            <span style="font-weight:400; font-style:italic; font-size:0.85rem; color:var(--muted);">(Theorien und Diskurse der sozialwissenschaftlichen Chinastudien)</span>
+          </div>
+          <div class="teaching-venue">Freie Universität Berlin, Institute for Chinese Studies · <span data-i18n="term-spring">Spring</span> 2024</div>
+        </div>
+        <span class="teaching-badge" data-i18n="badge-ma">MA Seminar</span>
+      </div>
+
+      <div class="teaching-item">
+        <div>
+          <div class="teaching-title">Chinesische Politik im Wandel der Moderne
+            <span style="font-weight:400; font-style:italic; font-size:0.85rem; color:var(--muted);">(Chinese Politics in the Course of Modernity)</span>
+          </div>
+          <div class="teaching-venue">Deutsche SchülerAkademie, Höchst im Odenwald · <span data-i18n="term-summer">Summer</span> 2023</div>
+        </div>
+        <span class="teaching-badge" data-i18n="badge-hs">High School Intensive</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CV ── -->
+<section id="cv">
+  <div class="section-inner">
+    <h2 class="section-title" data-i18n="section-cv">Curriculum Vitae</h2>
+    <div class="cv-block">
+      <p class="cv-text" data-i18n="cv-text">
+        My full academic CV — including education, publications, conference presentations,
+        teaching, and service — is available as a PDF.
+      </p>
+      <a class="btn-primary" href="/files/CV_DanqiGUO.pdf" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <polyline points="9 15 12 18 15 15"/>
+        </svg>
+        <span data-i18n="cv-btn">Download CV (PDF)</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p data-i18n="footer">© 2026 Danqi Guo &nbsp;·&nbsp; PhD Candidate, Freie Universität Berlin &nbsp;·&nbsp;
+    <a href="mailto:d.guo@fu-berlin.de">d.guo@fu-berlin.de</a>
+  </p>
+</footer>
+
+<script>
+  /* ── Translations ── */
+  const t = {
+    en: {
+      'nav-about':    'About',
+      'nav-research': 'Research',
+      'nav-teaching': 'Teaching',
+      'nav-cv':       'CV',
+
+      'side-cv':      'Download CV',
+      'hero-title':   'PhD Candidate in Political Science',
+      'hero-location':'Berlin, Germany',
+
+      'hero-bio-1': 'I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on <a href="https://www.digitalgovernancechina.eu/" target="_blank">Digital Governance in China</a>.',
+      'hero-bio-2': 'My research sits at the intersection of <strong>authoritarian politics</strong>, <strong>political psychology</strong> (particularly affect and emotion), and <strong>technology</strong> (particularly AI and digital control). I study the macro-level transformation of political institutions in modern autocracies, and the micro-level interplay between emotion and digital political control. My dissertation investigates digital authoritarianism through the understudied lens of emotion, using China as a central empirical case.',
+      'hero-bio-3': 'Methodologically, I draw on quantitative and experimental approaches — large-scale surveys, experiments, computational multimodal techniques — as well as qualitative methods including fieldwork, participant observation, and interviews.',
+      'hero-note':  'My work has been published in <em>Perspectives on Politics</em>, <em>Regulation &amp; Governance</em>, and the <em>Journal of Environmental Policy &amp; Planning</em>.',
+
+      'section-research': 'Research',
+      'section-teaching': 'Teaching',
+      'section-cv':       'Curriculum Vitae',
+
+      'tag-forth':  'Forthcoming',
+      'tag-wp':     'Working Paper',
+
+      'term-winter': 'Winter',
+      'term-spring': 'Spring',
+      'term-summer': 'Summer',
+
+      'badge-ma': 'MA Seminar',
+      'badge-hs': 'High School Intensive',
+
+      'cv-text': 'My full academic CV — including education, publications, conference presentations, teaching, and service — is available as a PDF.',
+      'cv-btn':  'Download CV (PDF)',
+
+      'footer': '© 2026 Danqi Guo &nbsp;·&nbsp; PhD Candidate, Freie Universität Berlin &nbsp;·&nbsp; <a href="mailto:d.guo@fu-berlin.de">d.guo@fu-berlin.de</a>',
+    },
+
+    de: {
+      'nav-about':    'Über mich',
+      'nav-research': 'Forschung',
+      'nav-teaching': 'Lehre',
+      'nav-cv':       'Lebenslauf',
+
+      'side-cv':      'Lebenslauf laden',
+      'hero-title':   'Doktorandin der Politikwissenschaft',
+      'hero-location':'Berlin, Deutschland',
+
+      'hero-bio-1': 'Ich bin Doktorandin in Politikwissenschaft (in der Abschlussphase) an der Freien Universität Berlin sowie Wissenschaftliche Mitarbeiterin in einem vom Europäischen Forschungsrat (ERC) geförderten Projekt zur <a href="https://www.digitalgovernancechina.eu/" target="_blank">Digital Governance in China</a>.',
+      'hero-bio-2': 'Meine Forschung befindet sich an der Schnittstelle von <strong>Autoritarismusforschung</strong>, <strong>Politischer Psychologie</strong> – insbesondere Affekt- und Emotionsforschung – sowie <strong>Technologie</strong>, mit besonderem Fokus auf Künstliche Intelligenz und andere disruptive Technologien. Ich untersuche auf der Makroebene die Transformation politischer Institutionen in modernen Autokratien und analysiere auf der Mikroebene das Zusammenspiel von Emotion und digitaler politischer Kontrolle. Meine Dissertation beleuchtet digitalen Autoritarismus aus einer bislang untererforschten emotionalen Perspektive und nimmt dabei China als zentralen empirischen Fall in den Blick.',
+      'hero-bio-3': 'Methodisch arbeite ich mit quantitativen und experimentellen Designs – darunter Umfragen, Experimente und computergestützte multimodale Verfahren – und kombiniere diese mit qualitativen Ansätzen wie Feldforschung, teilnehmender Beobachtung und leitfadengestützten Interviews.',
+      'hero-note':  'Meine Arbeiten wurden u.&thinsp;a. in <em>Perspectives on Politics</em>, <em>Regulation &amp; Governance</em> und im <em>Journal of Environmental Policy &amp; Planning</em> veröffentlicht.',
+
+      'section-research': 'Forschung',
+      'section-teaching': 'Lehre',
+      'section-cv':       'Curriculum Vitae',
+
+      'tag-forth':  'Im Erscheinen',
+      'tag-wp':     'Arbeitspapier',
+
+      'term-winter': 'Winter',
+      'term-spring': 'Sommer',
+      'term-summer': 'Sommer',
+
+      'badge-ma': 'MA-Seminar',
+      'badge-hs': 'Gymnasialer Intensivkurs',
+
+      'cv-text': 'Meinen vollständigen akademischen Lebenslauf – mit Ausbildung, Publikationen, Konferenzbeiträgen, Lehre und akademischem Engagement – finden Sie hier als PDF.',
+      'cv-btn':  'Lebenslauf herunterladen (PDF)',
+
+      'footer': '© 2026 Danqi Guo &nbsp;·&nbsp; Doktorandin, Freie Universität Berlin &nbsp;·&nbsp; <a href="mailto:d.guo@fu-berlin.de">d.guo@fu-berlin.de</a>',
+    },
+
+    zh: {
+      'nav-about':    '关于我',
+      'nav-research': '研究',
+      'nav-teaching': '教学',
+      'nav-cv':       '简历',
+
+      'side-cv':      '下载简历',
+      'hero-title':   '政治学博士候选人',
+      'hero-location':'德国柏林',
+
+      'hero-bio-1': '我是柏林自由大学政治学博士候选人，同时是欧洲研究委员会（ERC）资助项目<a href="https://www.digitalgovernancechina.eu/" target="_blank">中国数字治理</a>的预博士研究员。',
+      'hero-bio-2': '我的研究聚焦于<strong>威权政治</strong>、<strong>政治心理学</strong>（尤其是情感与情绪）以及<strong>技术</strong>（尤其是人工智能与颠覆性技术）的交叉领域。我研究现代威权国家政治制度在宏观层面的转型，以及情感与数字政治控制在微观层面的相互作用。我的博士论文从情感这一鲜少被关注的视角审视数字威权主义，以中国为核心经验案例。',
+      'hero-bio-3': '在研究方法上，我综合运用定量与实验方法——包括大规模调查、实验设计及计算多模态技术——以及田野调查、参与式观察和访谈等质性研究方法。',
+      'hero-note':  '我的研究成果已发表于 <em>Perspectives on Politics</em>、<em>Regulation &amp; Governance</em> 及 <em>Journal of Environmental Policy &amp; Planning</em> 等学术期刊。',
+
+      'section-research': '研究',
+      'section-teaching': '教学',
+      'section-cv':       '个人简历',
+
+      'tag-forth':  'Forthcoming',
+      'tag-wp':     '工作论文',
+
+      'term-winter': '冬季学期',
+      'term-spring': '夏季学期',
+      'term-summer': '夏季',
+
+      'badge-ma': '硕士研讨课',
+      'badge-hs': '高中强化课程',
+
+      'cv-text': '我的完整学术简历（包括教育背景、发表成果、学术会议报告、教学经历及学术服务）可下载PDF版本。',
+      'cv-btn':  '下载简历（PDF）',
+
+      'footer': '© 2026 Danqi Guo &nbsp;·&nbsp; PhD Candidate, Freie Universität Berlin &nbsp;·&nbsp; <a href="mailto:d.guo@fu-berlin.de">d.guo@fu-berlin.de</a>',
+    }
+  };
+
+  function setLanguage(lang) {
+    // Swap all tagged elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[lang] && t[lang][key] !== undefined) {
+        el.innerHTML = t[lang][key];
+      }
+    });
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+    // Update toggle buttons
+    ['en', 'de', 'zh'].forEach(l =>
+      document.getElementById('lang-' + l).classList.toggle('active', l === lang)
+    );
+    // Persist preference
+    try { localStorage.setItem('lang', lang); } catch(e) {}
+  }
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  const links  = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Restore saved language preference on load
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'de' || saved === 'zh') setLanguage(saved);
+  } catch(e) {}
+</script>
+
+</body>
+</html>
