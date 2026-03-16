@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Scheme Preview – Danqi Guo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      padding: 2rem;
+      color: #1a202c;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #1a202c;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Palette Selector ── */
+    .palette-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .palette-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      background: white;
+      color: #374151;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .palette-btn:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+    .palette-btn.active { border-color: #374151; }
+
+    .swatch {
+      display: flex;
+      gap: 3px;
+    }
+    .swatch span {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      display: block;
+    }
+
+    /* ── Preview Frame ── */
+    .preview-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+      border: 1px solid #e2e8f0;
+      background: white;
+    }
+
+    /* ── Mini Site Preview ── */
+    .site-preview {
+      display: none;
+    }
+    .site-preview.active {
+      display: block;
+    }
+
+    /* ─── NAV ─── */
+    .p-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 54px;
+    }
+    .p-nav-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: white;
+      letter-spacing: 0.02em;
+    }
+    .p-nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .p-nav-links li {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .p-lang {
+      display: flex;
+      gap: 3px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 5px;
+      padding: 2px;
+    }
+    .p-lang span {
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .p-lang .active-lang {
+      background: white;
+    }
+
+    /* ─── HERO ─── */
+    .p-hero {
+      padding: 3rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .p-photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .p-photo-ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      overflow: hidden;
+      background: #dde2ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .p-photo-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .p-photo-placeholder {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #9aa5bc;
+    }
+
+    .p-side-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+    }
+    .p-side-link {
+      padding: 0.35rem 0.65rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: white;
+      border: 1px solid #e2e8f0;
+      color: #4a5568;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .p-side-link .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    .p-hero-content {}
+    .p-name {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.25rem;
+    }
+    .p-title {
+      font-size: 0.82rem;
+      color: #718096;
+      margin-bottom: 0.1rem;
+    }
+    .p-affil {
+      font-size: 0.78rem;
+      color: #718096;
+      margin-bottom: 1.25rem;
+    }
+    .p-affil a { text-decoration: none; }
+
+    .p-bio {
+      font-size: 0.8rem;
+      color: #4a5568;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 0.6rem;
+    }
+    .p-note {
+      font-size: 0.75rem;
+      color: #718096;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.9rem;
+      margin-top: 0.9rem;
+      font-style: italic;
+    }
+
+    /* ─── SECTION ─── */
+    .p-section {
+      padding: 2.25rem 2rem;
+    }
+    .p-section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+    }
+
+    .p-pub {
+      border-left-width: 4px;
+      border-left-style: solid;
+      border-radius: 0 6px 6px 0;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.75rem;
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      border-right: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .p-pub-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .p-pub-authors {
+      font-size: 0.72rem;
+      color: #718096;
+      margin-bottom: 0.3rem;
+    }
+    .p-pub-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .p-pub-venue {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: #4a5568;
+    }
+    .p-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+    }
+
+    /* ─── FOOTER ─── */
+    .p-footer {
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ─── COLOR NOTE PANEL ─── */
+    .color-info {
+      margin-top: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .color-info h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #1a202c;
+    }
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
+    }
+    .color-swatch-lg {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+    .color-label {
+      font-size: 0.78rem;
+      color: #374151;
+    }
+    .color-hex {
+      font-size: 0.72rem;
+      color: #9ca3af;
+      font-family: monospace;
+    }
+    .color-note {
+      font-size: 0.82rem;
+      color: #6b7280;
+      line-height: 1.65;
+    }
+    .color-note strong { color: #374151; }
+
+    /* ─── APPLY NOTE ─── */
+    .apply-note {
+      margin-top: 1rem;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.8rem;
+      color: #92400e;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>Color Scheme Options for danqi-guo.com</h1>
+<p class="subtitle">Click a palette below to preview how it looks on your site layout. Let me know which direction you like!</p>
+
+<!-- ── Palette Buttons ── -->
+<div class="palette-bar">
+
+  <button class="palette-btn active" onclick="showPalette('navy')" id="btn-navy">
+    <div class="swatch">
+      <span style="background:#0f2044"></span>
+      <span style="background:#2563eb"></span>
+      <span style="background:#f7f8fc"></span>
+    </div>
+    A · Current (Deep Navy)
+  </button>
+
+  <button class="palette-btn" onclick="showPalette('slate')" id="btn-slate">
+    <div class="swatch">
+      <span style="background:#1e293b"></span>
+      <span style="background:#0ea5e9"></span>
+      <span style="background:#f8fafc"></span>
+    </div>
+    B · Cool Slate
+  </button>
+
+  <button class="palette-btn" onclick="showPalette('wine')" id="btn-wine">
+    <div class="swatch">
+      <span style="background:#4a1235"></span>
+      <span style="background:#be185d"></span>
+      <span style="background:#fdf2f8"></span>
+    </div>
+    C · Wine & Rose
+  </button>
+
+  <button class="palette-btn" onclick="showPalette('forest')" id="btn-forest">
+    <div class="swatch">
+      <span style="background:#14532d"></span>
+      <span style="background:#16a34a"></span>
+      <span style="background:#f0fdf4"></span>
+    </div>
+    D · Forest Green
+  </button>
+
+  <button class="palette-btn" onclick="showPalette('terra')" id="btn-terra">
+    <div class="swatch">
+      <span style="background:#431407"></span>
+      <span style="background:#ea580c"></span>
+      <span style="background:#fff7ed"></span>
+    </div>
+    E · Terracotta
+  </button>
+
+</div>
+
+<!-- ── Preview Frames ── -->
+<div class="preview-wrap">
+
+  <!-- A: NAVY (current) -->
+  <div class="site-preview active" id="preview-navy">
+    <nav class="p-nav" style="background:#0f2044;">
+      <span class="p-nav-name">Danqi Guo</span>
+      <ul class="p-nav-links" style="color:rgba(255,255,255,0.75)">
+        <li>About</li><li>Research</li><li>Teaching</li><li>CV</li>
+      </ul>
+      <div class="p-lang" style="color:rgba(255,255,255,0.6)">
+        <span class="active-lang" style="color:#0f2044;">EN</span>
+        <span>DE</span><span>中文</span>
+      </div>
+    </nav>
+    <div class="p-hero" style="background:#f7f8fc;">
+      <div class="p-photo-col">
+        <div class="p-photo-ring">
+          <img src="images/profile-foto.png" alt="Danqi Guo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="p-photo-placeholder" style="display:none">DG</span>
+        </div>
+        <div class="p-side-links">
+          <div class="p-side-link"><span class="dot" style="color:#0f2044"></span>Email</div>
+          <div class="p-side-link"><span class="dot" style="color:#0f2044"></span>GitHub</div>
+          <div class="p-side-link"><span class="dot" style="color:#0f2044"></span>LinkedIn</div>
+          <div class="p-side-link"><span class="dot" style="color:#0f2044"></span>ORCID</div>
+        </div>
+      </div>
+      <div class="p-hero-content">
+        <div class="p-name" style="color:#0f2044">Danqi Guo</div>
+        <div class="p-title">PhD Candidate in Political Science</div>
+        <div class="p-affil"><a href="#" style="color:#2563eb">Freie Universität Berlin</a> · Berlin, Germany</div>
+        <div class="p-bio">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on Digital Governance in China.</div>
+        <div class="p-bio">My research sits at the intersection of <strong style="color:#0f2044">authoritarian politics</strong>, <strong style="color:#0f2044">political psychology</strong>, and <strong style="color:#0f2044">technology</strong>.</div>
+        <div class="p-note">My work has been published in <em>Perspectives on Politics</em>, <em>Regulation & Governance</em>, and the <em>Journal of Environmental Policy & Planning</em>.</div>
+      </div>
+    </div>
+    <div class="p-section" style="background:white;">
+      <div class="p-section-title" style="color:#0f2044; border-color:#0f2044;">Research</div>
+      <div class="p-pub" style="border-left-color:#1e4080">
+        <div class="p-pub-title" style="color:#0f2044">Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy</div>
+        <div class="p-pub-authors">Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Perspectives on Politics</span>
+          <span class="p-tag" style="background:#fefcbf;color:#7b6010">Forthcoming</span>
+        </div>
+      </div>
+      <div class="p-pub" style="border-left-color:#48bb78">
+        <div class="p-pub-title" style="color:#0f2044">Security and Beyond: Unpacking State Narratives and Emotional Undertones for Digital Surveillance in China</div>
+        <div class="p-pub-authors">Yan, Y., Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Working Paper</span>
+          <span class="p-tag" style="background:#f0fff4;color:#276749">R&R</span>
+        </div>
+      </div>
+    </div>
+    <div class="p-footer" style="background:#0f2044;">
+      © 2026 Danqi Guo · PhD Candidate, Freie Universität Berlin · d.guo@fu-berlin.de
+    </div>
+  </div>
+
+  <!-- B: SLATE -->
+  <div class="site-preview" id="preview-slate">
+    <nav class="p-nav" style="background:#1e293b;">
+      <span class="p-nav-name">Danqi Guo</span>
+      <ul class="p-nav-links" style="color:rgba(255,255,255,0.75)">
+        <li>About</li><li>Research</li><li>Teaching</li><li>CV</li>
+      </ul>
+      <div class="p-lang" style="color:rgba(255,255,255,0.6)">
+        <span class="active-lang" style="color:#1e293b;">EN</span>
+        <span>DE</span><span>中文</span>
+      </div>
+    </nav>
+    <div class="p-hero" style="background:#f8fafc;">
+      <div class="p-photo-col">
+        <div class="p-photo-ring">
+          <img src="images/profile-foto.png" alt="Danqi Guo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="p-photo-placeholder" style="display:none">DG</span>
+        </div>
+        <div class="p-side-links">
+          <div class="p-side-link"><span class="dot" style="color:#1e293b"></span>Email</div>
+          <div class="p-side-link"><span class="dot" style="color:#1e293b"></span>GitHub</div>
+          <div class="p-side-link"><span class="dot" style="color:#1e293b"></span>LinkedIn</div>
+          <div class="p-side-link"><span class="dot" style="color:#1e293b"></span>ORCID</div>
+        </div>
+      </div>
+      <div class="p-hero-content">
+        <div class="p-name" style="color:#1e293b">Danqi Guo</div>
+        <div class="p-title">PhD Candidate in Political Science</div>
+        <div class="p-affil"><a href="#" style="color:#0ea5e9">Freie Universität Berlin</a> · Berlin, Germany</div>
+        <div class="p-bio">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on Digital Governance in China.</div>
+        <div class="p-bio">My research sits at the intersection of <strong style="color:#1e293b">authoritarian politics</strong>, <strong style="color:#1e293b">political psychology</strong>, and <strong style="color:#1e293b">technology</strong>.</div>
+        <div class="p-note">My work has been published in <em>Perspectives on Politics</em>, <em>Regulation & Governance</em>, and the <em>Journal of Environmental Policy & Planning</em>.</div>
+      </div>
+    </div>
+    <div class="p-section" style="background:white;">
+      <div class="p-section-title" style="color:#1e293b; border-color:#1e293b;">Research</div>
+      <div class="p-pub" style="border-left-color:#0ea5e9">
+        <div class="p-pub-title" style="color:#1e293b">Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy</div>
+        <div class="p-pub-authors">Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Perspectives on Politics</span>
+          <span class="p-tag" style="background:#fef9c3;color:#713f12">Forthcoming</span>
+        </div>
+      </div>
+      <div class="p-pub" style="border-left-color:#38bdf8">
+        <div class="p-pub-title" style="color:#1e293b">Security and Beyond: Unpacking State Narratives and Emotional Undertones for Digital Surveillance in China</div>
+        <div class="p-pub-authors">Yan, Y., Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Working Paper</span>
+          <span class="p-tag" style="background:#e0f2fe;color:#075985">R&R</span>
+        </div>
+      </div>
+    </div>
+    <div class="p-footer" style="background:#1e293b;">
+      © 2026 Danqi Guo · PhD Candidate, Freie Universität Berlin · d.guo@fu-berlin.de
+    </div>
+  </div>
+
+  <!-- C: WINE -->
+  <div class="site-preview" id="preview-wine">
+    <nav class="p-nav" style="background:#4a1235;">
+      <span class="p-nav-name">Danqi Guo</span>
+      <ul class="p-nav-links" style="color:rgba(255,255,255,0.75)">
+        <li>About</li><li>Research</li><li>Teaching</li><li>CV</li>
+      </ul>
+      <div class="p-lang" style="color:rgba(255,255,255,0.6)">
+        <span class="active-lang" style="color:#4a1235;">EN</span>
+        <span>DE</span><span>中文</span>
+      </div>
+    </nav>
+    <div class="p-hero" style="background:#fdf2f8;">
+      <div class="p-photo-col">
+        <div class="p-photo-ring">
+          <img src="images/profile-foto.png" alt="Danqi Guo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="p-photo-placeholder" style="display:none">DG</span>
+        </div>
+        <div class="p-side-links">
+          <div class="p-side-link"><span class="dot" style="color:#4a1235"></span>Email</div>
+          <div class="p-side-link"><span class="dot" style="color:#4a1235"></span>GitHub</div>
+          <div class="p-side-link"><span class="dot" style="color:#4a1235"></span>LinkedIn</div>
+          <div class="p-side-link"><span class="dot" style="color:#4a1235"></span>ORCID</div>
+        </div>
+      </div>
+      <div class="p-hero-content">
+        <div class="p-name" style="color:#4a1235">Danqi Guo</div>
+        <div class="p-title">PhD Candidate in Political Science</div>
+        <div class="p-affil"><a href="#" style="color:#be185d">Freie Universität Berlin</a> · Berlin, Germany</div>
+        <div class="p-bio">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on Digital Governance in China.</div>
+        <div class="p-bio">My research sits at the intersection of <strong style="color:#4a1235">authoritarian politics</strong>, <strong style="color:#4a1235">political psychology</strong>, and <strong style="color:#4a1235">technology</strong>.</div>
+        <div class="p-note">My work has been published in <em>Perspectives on Politics</em>, <em>Regulation & Governance</em>, and the <em>Journal of Environmental Policy & Planning</em>.</div>
+      </div>
+    </div>
+    <div class="p-section" style="background:white;">
+      <div class="p-section-title" style="color:#4a1235; border-color:#4a1235;">Research</div>
+      <div class="p-pub" style="border-left-color:#be185d">
+        <div class="p-pub-title" style="color:#4a1235">Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy</div>
+        <div class="p-pub-authors">Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Perspectives on Politics</span>
+          <span class="p-tag" style="background:#fef9c3;color:#713f12">Forthcoming</span>
+        </div>
+      </div>
+      <div class="p-pub" style="border-left-color:#ec4899">
+        <div class="p-pub-title" style="color:#4a1235">Security and Beyond: Unpacking State Narratives and Emotional Undertones for Digital Surveillance in China</div>
+        <div class="p-pub-authors">Yan, Y., Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Working Paper</span>
+          <span class="p-tag" style="background:#fce7f3;color:#831843">R&R</span>
+        </div>
+      </div>
+    </div>
+    <div class="p-footer" style="background:#4a1235;">
+      © 2026 Danqi Guo · PhD Candidate, Freie Universität Berlin · d.guo@fu-berlin.de
+    </div>
+  </div>
+
+  <!-- D: FOREST -->
+  <div class="site-preview" id="preview-forest">
+    <nav class="p-nav" style="background:#14532d;">
+      <span class="p-nav-name">Danqi Guo</span>
+      <ul class="p-nav-links" style="color:rgba(255,255,255,0.75)">
+        <li>About</li><li>Research</li><li>Teaching</li><li>CV</li>
+      </ul>
+      <div class="p-lang" style="color:rgba(255,255,255,0.6)">
+        <span class="active-lang" style="color:#14532d;">EN</span>
+        <span>DE</span><span>中文</span>
+      </div>
+    </nav>
+    <div class="p-hero" style="background:#f0fdf4;">
+      <div class="p-photo-col">
+        <div class="p-photo-ring">
+          <img src="images/profile-foto.png" alt="Danqi Guo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="p-photo-placeholder" style="display:none">DG</span>
+        </div>
+        <div class="p-side-links">
+          <div class="p-side-link"><span class="dot" style="color:#14532d"></span>Email</div>
+          <div class="p-side-link"><span class="dot" style="color:#14532d"></span>GitHub</div>
+          <div class="p-side-link"><span class="dot" style="color:#14532d"></span>LinkedIn</div>
+          <div class="p-side-link"><span class="dot" style="color:#14532d"></span>ORCID</div>
+        </div>
+      </div>
+      <div class="p-hero-content">
+        <div class="p-name" style="color:#14532d">Danqi Guo</div>
+        <div class="p-title">PhD Candidate in Political Science</div>
+        <div class="p-affil"><a href="#" style="color:#16a34a">Freie Universität Berlin</a> · Berlin, Germany</div>
+        <div class="p-bio">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on Digital Governance in China.</div>
+        <div class="p-bio">My research sits at the intersection of <strong style="color:#14532d">authoritarian politics</strong>, <strong style="color:#14532d">political psychology</strong>, and <strong style="color:#14532d">technology</strong>.</div>
+        <div class="p-note">My work has been published in <em>Perspectives on Politics</em>, <em>Regulation & Governance</em>, and the <em>Journal of Environmental Policy & Planning</em>.</div>
+      </div>
+    </div>
+    <div class="p-section" style="background:white;">
+      <div class="p-section-title" style="color:#14532d; border-color:#14532d;">Research</div>
+      <div class="p-pub" style="border-left-color:#16a34a">
+        <div class="p-pub-title" style="color:#14532d">Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy</div>
+        <div class="p-pub-authors">Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Perspectives on Politics</span>
+          <span class="p-tag" style="background:#fef9c3;color:#713f12">Forthcoming</span>
+        </div>
+      </div>
+      <div class="p-pub" style="border-left-color:#4ade80">
+        <div class="p-pub-title" style="color:#14532d">Security and Beyond: Unpacking State Narratives and Emotional Undertones for Digital Surveillance in China</div>
+        <div class="p-pub-authors">Yan, Y., Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Working Paper</span>
+          <span class="p-tag" style="background:#dcfce7;color:#14532d">R&R</span>
+        </div>
+      </div>
+    </div>
+    <div class="p-footer" style="background:#14532d;">
+      © 2026 Danqi Guo · PhD Candidate, Freie Universität Berlin · d.guo@fu-berlin.de
+    </div>
+  </div>
+
+  <!-- E: TERRACOTTA -->
+  <div class="site-preview" id="preview-terra">
+    <nav class="p-nav" style="background:#431407;">
+      <span class="p-nav-name">Danqi Guo</span>
+      <ul class="p-nav-links" style="color:rgba(255,255,255,0.75)">
+        <li>About</li><li>Research</li><li>Teaching</li><li>CV</li>
+      </ul>
+      <div class="p-lang" style="color:rgba(255,255,255,0.6)">
+        <span class="active-lang" style="color:#431407;">EN</span>
+        <span>DE</span><span>中文</span>
+      </div>
+    </nav>
+    <div class="p-hero" style="background:#fff7ed;">
+      <div class="p-photo-col">
+        <div class="p-photo-ring">
+          <img src="images/profile-foto.png" alt="Danqi Guo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="p-photo-placeholder" style="display:none">DG</span>
+        </div>
+        <div class="p-side-links">
+          <div class="p-side-link"><span class="dot" style="color:#431407"></span>Email</div>
+          <div class="p-side-link"><span class="dot" style="color:#431407"></span>GitHub</div>
+          <div class="p-side-link"><span class="dot" style="color:#431407"></span>LinkedIn</div>
+          <div class="p-side-link"><span class="dot" style="color:#431407"></span>ORCID</div>
+        </div>
+      </div>
+      <div class="p-hero-content">
+        <div class="p-name" style="color:#431407">Danqi Guo</div>
+        <div class="p-title">PhD Candidate in Political Science</div>
+        <div class="p-affil"><a href="#" style="color:#ea580c">Freie Universität Berlin</a> · Berlin, Germany</div>
+        <div class="p-bio">I am a PhD candidate (near completion, on the job market) in Political Science at Freie Universität Berlin, and a Predoctoral Researcher at the ERC-funded project on Digital Governance in China.</div>
+        <div class="p-bio">My research sits at the intersection of <strong style="color:#431407">authoritarian politics</strong>, <strong style="color:#431407">political psychology</strong>, and <strong style="color:#431407">technology</strong>.</div>
+        <div class="p-note">My work has been published in <em>Perspectives on Politics</em>, <em>Regulation & Governance</em>, and the <em>Journal of Environmental Policy & Planning</em>.</div>
+      </div>
+    </div>
+    <div class="p-section" style="background:white;">
+      <div class="p-section-title" style="color:#431407; border-color:#431407;">Research</div>
+      <div class="p-pub" style="border-left-color:#ea580c">
+        <div class="p-pub-title" style="color:#431407">Knowing is Disturbing: Emotions and Public Attitudes Toward Digital Control under Autocracy</div>
+        <div class="p-pub-authors">Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Perspectives on Politics</span>
+          <span class="p-tag" style="background:#fef9c3;color:#713f12">Forthcoming</span>
+        </div>
+      </div>
+      <div class="p-pub" style="border-left-color:#fb923c">
+        <div class="p-pub-title" style="color:#431407">Security and Beyond: Unpacking State Narratives and Emotional Undertones for Digital Surveillance in China</div>
+        <div class="p-pub-authors">Yan, Y., Guo, D. & Kostka, G.</div>
+        <div class="p-pub-meta">
+          <span class="p-pub-venue">Working Paper</span>
+          <span class="p-tag" style="background:#ffedd5;color:#7c2d12">R&R</span>
+        </div>
+      </div>
+    </div>
+    <div class="p-footer" style="background:#431407;">
+      © 2026 Danqi Guo · PhD Candidate, Freie Universität Berlin · d.guo@fu-berlin.de
+    </div>
+  </div>
+
+</div><!-- end preview-wrap -->
+
+<!-- ── Color Info Panels ── -->
+
+<div class="color-info" id="info-navy" style="display:grid">
+  <div>
+    <h3>A · Current — Deep Navy Blue</h3>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#0f2044"></div><div><div class="color-label">Primary (Nav / Headings)</div><div class="color-hex">#0f2044</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#1e4080"></div><div><div class="color-label">Secondary (Pub cards)</div><div class="color-hex">#1e4080</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#2563eb"></div><div><div class="color-label">Accent (Links)</div><div class="color-hex">#2563eb</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#f7f8fc"></div><div><div class="color-label">Hero / Section background</div><div class="color-hex">#f7f8fc</div></div></div>
+  </div>
+  <div>
+    <h3>Character</h3>
+    <p class="color-note"><strong>Authoritative, serious, professional.</strong> Deep navy communicates academic gravitas. This palette reads as classic, credible, and very well-suited for a political science researcher on the job market. It's safe and polished — exactly what hiring committees expect.</p>
+  </div>
+</div>
+
+<div class="color-info" id="info-slate" style="display:none">
+  <div>
+    <h3>B · Cool Slate</h3>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#1e293b"></div><div><div class="color-label">Primary (Nav / Headings)</div><div class="color-hex">#1e293b</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#334155"></div><div><div class="color-label">Secondary</div><div class="color-hex">#334155</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#0ea5e9"></div><div><div class="color-label">Accent (Links / Cards)</div><div class="color-hex">#0ea5e9</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#f8fafc"></div><div><div class="color-label">Hero / Section background</div><div class="color-hex">#f8fafc</div></div></div>
+  </div>
+  <div>
+    <h3>Character</h3>
+    <p class="color-note"><strong>Modern, tech-forward, clean.</strong> Charcoal slate with a sky-blue accent feels contemporary and slightly warmer than the current navy. The lighter primary color gives the overall design more breathing room. Good choice if you want a slightly more approachable, tech-adjacent feel — fitting given your AI/digital governance research.</p>
+  </div>
+</div>
+
+<div class="color-info" id="info-wine" style="display:none">
+  <div>
+    <h3>C · Wine & Rose</h3>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#4a1235"></div><div><div class="color-label">Primary (Nav / Headings)</div><div class="color-hex">#4a1235</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#831843"></div><div><div class="color-label">Secondary</div><div class="color-hex">#831843</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#be185d"></div><div><div class="color-label">Accent (Links / Cards)</div><div class="color-hex">#be185d</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#fdf2f8"></div><div><div class="color-label">Hero / Section background</div><div class="color-hex">#fdf2f8</div></div></div>
+  </div>
+  <div>
+    <h3>Character</h3>
+    <p class="color-note"><strong>Distinctive, warm, intellectual.</strong> Deep wine/burgundy is less common in academia, which makes it memorable. Subtle and sophisticated — the pink-rose background tint adds warmth without being loud. A bold choice that still reads as scholarly. Works especially well if you want your site to stand out from the sea of blue academic portfolios.</p>
+  </div>
+</div>
+
+<div class="color-info" id="info-forest" style="display:none">
+  <div>
+    <h3>D · Forest Green</h3>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#14532d"></div><div><div class="color-label">Primary (Nav / Headings)</div><div class="color-hex">#14532d</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#166534"></div><div><div class="color-label">Secondary</div><div class="color-hex">#166534</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#16a34a"></div><div><div class="color-label">Accent (Links / Cards)</div><div class="color-hex">#16a34a</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#f0fdf4"></div><div><div class="color-label">Hero / Section background</div><div class="color-hex">#f0fdf4</div></div></div>
+  </div>
+  <div>
+    <h3>Character</h3>
+    <p class="color-note"><strong>Grounded, calm, slightly humanistic.</strong> Deep forest green with a very light mint background reads as thoughtful and natural. Less commonly used in political science, but still professional enough. Has a slightly environmental/humanities tone — could resonate with your environmental governance work. Very readable with good contrast.</p>
+  </div>
+</div>
+
+<div class="color-info" id="info-terra" style="display:none">
+  <div>
+    <h3>E · Terracotta</h3>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#431407"></div><div><div class="color-label">Primary (Nav / Headings)</div><div class="color-hex">#431407</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#7c2d12"></div><div><div class="color-label">Secondary</div><div class="color-hex">#7c2d12</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#ea580c"></div><div><div class="color-label">Accent (Links / Cards)</div><div class="color-hex">#ea580c</div></div></div>
+    <div class="color-row"><div class="color-swatch-lg" style="background:#fff7ed"></div><div><div class="color-label">Hero / Section background</div><div class="color-hex">#fff7ed</div></div></div>
+  </div>
+  <div>
+    <h3>Character</h3>
+    <p class="color-note"><strong>Warm, personal, earthy.</strong> Deep terracotta/rust with a warm cream background gives the site a very personal and approachable feel. The warmth is inviting, and the dark burnt-orange accent is vibrant without being garish. A more daring choice — shows personality. Less "traditional academic" but still elegant and highly readable.</p>
+  </div>
+</div>
+
+<div class="apply-note">
+  💡 <strong>To apply a color scheme:</strong> Tell me which one you like (A through E), and I'll update your <code>index.html</code> directly with the new colors. You can also mix and match — for example, navy nav with a terracotta accent.
+</div>
+
+<script>
+  const palettes = ['navy', 'slate', 'wine', 'forest', 'terra'];
+
+  function showPalette(id) {
+    palettes.forEach(p => {
+      document.getElementById('preview-' + p).classList.toggle('active', p === id);
+      document.getElementById('info-' + p).style.display = (p === id) ? 'grid' : 'none';
+      document.getElementById('btn-' + p).classList.toggle('active', p === id);
+    });
+  }
+</script>
+
+</body>
+</html>
